@@ -28,6 +28,7 @@ function generatePassword() {
   //Prompt for number of characters
   numCharPrompt();
   if (numChar === null) {
+    console.log("The user canceled the process!")
     return;
   }
   console.log(`Number of characters selected: ${numChar}`);
@@ -35,6 +36,7 @@ function generatePassword() {
   //Prompt for character types
   charTypes();
   if (response === null) {
+    console.log("The user canceled the process!")
     return;
   }
   console.log(`Nubmer of selections: ${selections}`);
