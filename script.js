@@ -8,7 +8,7 @@ function writePassword() {
   passwordText.value = passwordString;
 
   //Reset variables for next run
-  passwordString = ""
+  passwordString = "";
   numChar = 0;
   selections = 0;
   charSet = "";
@@ -21,15 +21,22 @@ var numChar = 0;
 var selections = 0;
 var charSet = "";
 var passwordString = ""
+var response = ""
 
 function generatePassword() {
 
   //Prompt for number of characters
   numCharPrompt();
+  if (numChar === null) {
+    return;
+  }
   console.log(`Number of characters selected: ${numChar}`);
 
   //Prompt for character types
   charTypes();
+  if (response === null) {
+    return;
+  }
   console.log(`Nubmer of selections: ${selections}`);
   console.log(`Selected characters: ${charSet}`);
 
@@ -37,7 +44,7 @@ function generatePassword() {
   for (var i = 0, n = charSet.length; i < numChar; ++i) {
     passwordString += charSet.charAt(Math.floor(Math.random() * n));
   }
-  console.log(passwordString);
+  console.log(`Password: ${passwordString}`);
 }
 
 //Prompt for number of characters
@@ -45,6 +52,8 @@ function numCharPrompt() {
   numChar = window.prompt("How many characters? (8-124)", 8);
   if (numChar >= 8 && numChar <= 128) {
     //Do nothing
+  } else if (!numChar) {
+    return;
   } else {
     window.alert("Please input a number between 8 and 128!");
     numCharPrompt();
@@ -56,7 +65,10 @@ function charTypes() {
 
   //Prompt for uppercase characters
   function upperCasePrompt() {
-    var response = window.prompt("Include uppercase letters? Y/N", "Y");
+    response = window.prompt("Include uppercase letters? Y/N", "Y");
+    if (response === null) {
+      return;
+    } 
     response = response.toUpperCase();
     if (response === "Y") {
       selections++;
@@ -71,7 +83,10 @@ function charTypes() {
 
   //Prompt for lowercase characters
   function lowerCasePrompt() {
-    var response = window.prompt("Include lowercase letters? Y/N", "Y");
+    response = window.prompt("Include lowercase letters? Y/N", "Y");
+    if (response === null) {
+      return;
+    } 
     response = response.toUpperCase();
     if (response === "Y") {
       selections++;
@@ -86,7 +101,10 @@ function charTypes() {
 
   //Prompt for numbers
   function numbersPrompt() {
-    var response = window.prompt("Include numbers? Y/N", "Y");
+    response = window.prompt("Include numbers? Y/N", "Y");
+    if (response === null) {
+      return;
+    } 
     response = response.toUpperCase();
     if (response === "Y") {
       selections++;
@@ -101,7 +119,10 @@ function charTypes() {
 
   //Prompt for uppercase characters
   function specialCharPrompt() {
-    var response = window.prompt("Include special characters? Y/N", "Y");
+    response = window.prompt("Include special characters? Y/N \n ?<>!@#$%^&*()", "Y");
+    if (response === null) {
+      return;
+    } 
     response = response.toUpperCase();
     if (response === "Y") {
       selections++;
@@ -116,9 +137,21 @@ function charTypes() {
 
   //Run prompts
   upperCasePrompt();
+  if (response === null) {
+    return;
+  }
   lowerCasePrompt();
+  if (response === null) {
+    return;
+  }
   numbersPrompt();
+  if (response === null) {
+    return;
+  }
   specialCharPrompt();
+  if (response === null) {
+    return;
+  }
 
   //Check at least one option selected
   if (selections === 0) {
