@@ -31,7 +31,6 @@ function generatePassword() {
     console.log("The user canceled the process!")
     return;
   }
-  console.log(`Number of characters selected: ${numChar}`);
 
   //Prompt for character types
   charTypes();
@@ -39,14 +38,11 @@ function generatePassword() {
     console.log("The user canceled the process!")
     return;
   }
-  console.log(`Nubmer of selections: ${selections}`);
-  console.log(`Selected characters: ${charSet}`);
 
   //Generate password string
   for (var i = 0, n = charSet.length; i < numChar; ++i) {
     passwordString += charSet.charAt(Math.floor(Math.random() * n));
   }
-  console.log(`Password: ${passwordString}`);
 }
 
 //Prompt for number of characters
